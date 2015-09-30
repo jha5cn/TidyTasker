@@ -1,9 +1,30 @@
 Rails.application.routes.draw do
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+  
+  post 'task/save' => 'tasks#save'
+  
+  get 'login/:nameInput/:passwordInput' => 'sessions#create'
+  
   get 'tasks/new'
 
   get 'projects/new'
 
   get 'users/new'
+  
+  get 'users/:userName' => 'users#userName'
+  
+  resources :users
+  resources :projects
+  resources :tasks
+  
+  #get 'users/register/:nameInput/:emailInput/:passwordInput/:passwordConfimrationInput' => 'users#register'
+  get 'users/delete/:idInput' => 'users#delete'
+  get 'users/:idInput/projects' => 'users#projects', as: 'userProjects'
+  
+  get 'projects/:idInput/tasks' => 'projects#tasks'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
