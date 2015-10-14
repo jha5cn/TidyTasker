@@ -24,8 +24,6 @@ class UsersController < ApplicationController
 	if @user.save
 		@project = Project.create(:user_id => @user.id)
 		@project.save
-		/@task = Task.create(:project_id => @project.id)
-		@task.save*/
 		redirect_to users_url
 	else
 		render 'new'
@@ -40,19 +38,6 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  /def register
-	@user = User.create(:name => params[:nameInput], :email => params[:emailInput], :password => params[:passwordInput], :password_confirmation => params[:passwordConfirmationInput])
-	respond_to do |format|
-    if @user.save
-     format.html { redirect_to @user, notice: 'user was successfully created.' }
-     format.json { render :show, status: :created, location: @user }
-  else
-    format.html { render :new }
-    format.json { render json: @user.errors, status: :unprocessable_entity }
-  end
- end
- end*/
  
   def show
 	@user = User.find(params[:id])
